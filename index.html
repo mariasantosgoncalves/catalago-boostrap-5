@@ -66,7 +66,7 @@
                         <p class="card-text flex-grow-1">descrinçao curta do produto ou item do catalago.</p>
                     </div>
                     <div class="card-footer bg-light border-top-0 d-grid">
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-target="#detalheModal">
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal" data-item-id="1">
                             <i class="bi bi-search"></i> ver detalhe
                         </button>
                     </div>
@@ -83,7 +83,7 @@
                         <p class="card-text flex-grow-1">um item feito a mao com detalhes especiais e muito carrinho.</p>
                     </div>
                     <div class="card-footer bg-light border-top-0 d-grid">
-                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-target="#detalheModal">
+                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal" data-item-id="2">
                             <i class="bi bi-search"></i> ver detalhe
                         </button>
                     </div>
@@ -100,7 +100,7 @@
                         <p class="card-text flex-grow-1">terceiro item do destaque.</p>
                     </div>
                     <div class="card-footer bg-light border-top-0 d-grid">
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-target="#detalheModal">
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal"data-item-id="3">
                             <i class="bi bi-search"></i> ver detalhe
                         </button>
                     </div>
@@ -112,12 +112,12 @@
                 <div class="card h-100 shadow-sm rouded-3">
                     <img src="https://placehold.co/400x300/1e40af/ffffff?text=LIVRO" class="card-img-top roudend-t-3" alt="titulo do livro">
                     <div class="card-body d-flex-colunm">
-                        <h5 class="card-title text-primary">titulo do item</h5>
-                        <p class="card-text-muted">categoria: livros</p>
-                        <p class="card-text flex-grow-1">descrinçao curta do produto ou item do catalago.</p>
+                        <h5 class="card-title text-primary"> item de arte 4</h5>
+                        <p class="card-text-muted">categoria: artesanato</p>
+                        <p class="card-text flex-grow-1">quarto item de destaque.</p>
                     </div>
                     <div class="card-footer bg-light border-top-0 d-grid">
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-target="#detalheModal">
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal"data-item-id="4">
                             <i class="bi bi-search"></i> ver detalhe
                         </button>
                     </div>
@@ -126,5 +126,27 @@
             
         </div> <!-- .row -->
     </div> <!-- .container-->
+    
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2025 catalago do ensino medio.desenvolvimento com bootstrap 5.</p>
+    </footer>
+    
+    <div class="modal fade" id="detalheModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">detalhes do item</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
+                    <button type="button" class="btn btn-success"><i class="bi bi-cart-plus"></i> adicionar a lista</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
