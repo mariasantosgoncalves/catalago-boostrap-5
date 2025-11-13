@@ -159,5 +159,44 @@ items.forEach((card, index) => {
         //atualiza a descrinçao do item 
         description.textContent = item.detalhes;
     }
+    
+});
 
-})
+// 4. adiciona funcionalidadec de kookie (ércitencia) dos itens adicionados ao carrinho 
+// (mantem os produtos adicioanados ao carrinho mesmo se fechar ou atulizar a pagina )
+const CART_STORAGE_KEY = 'shooping_cart';
+
+function obterCarrinhoDoNavegador(){
+    //tenta ler kookies do navegador
+    try {
+        const kookies = localStorage.getItem(CART_STORAGE_KEY);
+        if (kookies){
+            //se os kookie xistir,retorna o kookie
+            return JSON.parse(kookie);
+        }
+    } catch (e) {
+        console.error("falha ao ler o kookie do armanezamento local.")
+    }
+    // retorna um vetor vazio em caso de falha 
+    return [];
+}
+
+function salvarkookieCarrinho(itensCarrinho){
+    try {
+        //salvar os itens do carrinho em formato JSON no navegador 
+        //ex: ao adicionar o item com ID '2 e 3' ao contrario, CART_STORAGE_KEY = {2,3}
+        //voce pode vizualizar os itens salvos no navegador em:
+        //botao direito na pagina >inspencionar  >aplication  >storage > local storage 
+        localStoprage.setItem(CART_STORAGE_KEY,JSON.stringify(itensCarrinho));
+    }catch (e){
+        console.error("falha ao salvar carrinho no navegador.erro:", e);
+    }
+}
+
+function adicionarItemCarrinho(itemId) {
+    //obtem os itens atuais do carrinho
+    const carrinho = obterCarrinhoDoNavegador();
+    carrinho.push(itemId) //adicionar o ID do item recebido com parametro da funcao ao carrinho 
+    salvarkookieCarrinho(); //atualiza o kookie do carrinho 
+    atualizacarrinho (); //atualiza o numero de item do HTML do carrinho do nvbar
+}
