@@ -85,9 +85,10 @@ modalElement.addEventListener('show.bs.modal', function (event){
         
         // ao cliclar no botao "adicionar ao carrinho"
         modalAction.onclick = () => {
-            console.log(`acao:item'${item.titulo}'' (ID: ${item.id}) adicionado ao carrinho.`);
             //em uma aplicacao real,voce faria uma chamada de API aqui.
-            // para este exemplo, apenas fechamos o modal e fechando o log.
+            // para este exemplo, apenas adicionamos o item ao carrinho mostramos o log e fechamos o modal
+            adicionarItemCarrinho(item.id);
+            console.log(`acao:item'${item.titulo}'' (ID: ${item.id}) adicionado ao carrinho.`);
             const bsModal = bootstrap.Modal.getInstance(modalElement);
             if(bsModal) bsModal.hide();
         }
@@ -113,7 +114,7 @@ function executarPesquisa(event) {
         
         //verificar se o titulo ou categoria do item atual incluem o valor digitado no campo de busca
         //se o valor do campo de busca (query==="") for em branco,exibe todos os itens
-        if(title.incluedes(query) || category.incluedes(query) || query === "") {
+        if(title.includes(query) || category.includes(query) || query === "") {
         } else {
             item.style.display = 'none'; //esconde o item
             
@@ -125,11 +126,11 @@ function executarPesquisa(event) {
 //adicionar evento ao cliclar no botão "buscar"
 searchButton.addEventListener('click', executarPesquisa);
 //adicionar evento ao pressionar qualquer tecla no campo "buscar item"
-searchInput.addEventListener('keypu', (event) => {
+searchInput.addEventListener('keyup', (event) => {
     //permite buscar ao pressionar enter
-    if(event.key === 'enter') {
+    if(event.key === 'Enter') {
         executarPesquisa(event);
-    }else if(searchInput.ariaValueMax.trim()== ""){
+    }else if(searchInput.value.trim() == ""){
         //mostra todos os itens se a busca for apagada
         executarPesquisa(event);
     }
@@ -169,10 +170,10 @@ const CART_STORAGE_KEY = 'shooping_cart';
 function obterCarrinhoDoNavegador(){
     //tenta ler kookies do navegador
     try {
-        const kookies = localStorage.getItem(CART_STORAGE_KEY);
-        if (kookies){
+        const cookies = localStorage.getItem(CART_STORAGE_KEY);
+        if (cookies){
             //se os kookie xistir,retorna o kookie
-            return JSON.parse(kookie);
+            return JSON.parse(cookie);
         }
     } catch (e) {
         console.error("falha ao ler o kookie do armanezamento local.")
@@ -181,15 +182,36 @@ function obterCarrinhoDoNavegador(){
     return [];
 }
 
-function salvarkookieCarrinho(itensCarrinho){
+function salvarCookieCarrinho(itensCarrinho){
     try {
         //salvar os itens do carrinho em formato JSON no navegador 
         //ex: ao adicionar o item com ID '2 e 3' ao contrario, CART_STORAGE_KEY = {2,3}
         //voce pode vizualizar os itens salvos no navegador em:
         //botao direito na pagina >inspencionar  >aplication  >storage > local storage 
-        localStoprage.setItem(CART_STORAGE_KEY,JSON.stringify(itensCarrinho));
+        localStorage.setItem(CART_STORAGE_KEY,JSON.stringify(itensCarrinho));
     }catch (e){
         console.error("falha ao salvar carrinho no navegador.erro:", e);
+    }
+}
+
+function atualizarContadorCarrinho(){
+    //obtem os itens existentes no carrinho 
+    const carrinho = obterCarrinhoDoNavegador();
+    //obetem  o elemento HTML que exibi o numero de itens no carrinho  (bedge)
+    const carrinhoBadge = document.getElementById("cart-count");
+    
+    // se o elemento que exibe  o nuemro de itens no carrinho (bedge) existe 
+    if (carrinhoBadge){
+        //atualiza a badge  do carrinho com o numero de itens do carrinho 
+        carrinhoBadge.textContent = carrinho.length;
+        
+        if(carrinho.length > 0){
+            //remove o class bootstrap 'd-none' (ccs: 'display: none;') para rexibir  o bedge
+            carrinhoBadge.classList.remove('d-none');
+        }else{
+            //adiciona a class bootstrap 'd-none' ( CCS: 'display:none;') para ocultar o bedge
+            carrinhoBadge.classList.add("d-none");
+        }
     }
 }
 
@@ -197,6 +219,36 @@ function adicionarItemCarrinho(itemId) {
     //obtem os itens atuais do carrinho
     const carrinho = obterCarrinhoDoNavegador();
     carrinho.push(itemId) //adicionar o ID do item recebido com parametro da funcao ao carrinho 
-    salvarkookieCarrinho(); //atualiza o kookie do carrinho 
-    atualizacarrinho (); //atualiza o numero de item do HTML do carrinho do nvbar
+    salvarCookieCarrinho(carrinho); //atualiza o kookie do carrinho 
+    atualizarContadorCarrinho (); //atualiza o numero de item do HTML do carrinho do nvbar
 }
+// carrega o numero de itens no  carrinho  ao carregar a pagina HTML 
+atualizarContadorCarrinho();
+
+// 5. renderiza  o conteudo do carrinho 
+const carrinho_btn = document.getElementById("cart-button");
+
+//ao clicar no botao do carrinho
+carrinho_btn.addEventListener("click",function() {
+    //Exibe a secao de "meu carrinho de compras" se ela estiver invisivel(remove a class "d-none")
+    //oculta a seçao do "meu carrinho de compras" se ela nao estiver visivel (adiciona a classe "d-none") 
+    const carrinho_secao = document.getElementById("cart-section");
+    carrinho_secao.classList.toggle("d-none");
+    
+    // se a seçao do carrinho passui a class "d-none" (ou seja, se o carrinho nao esta visivel)
+    if(carrinho_secao.classList.contains("d-none")){
+        return;//para de processar a funçao de renderizar o recibo se a seçao "meu carrinho de compras" nao esta visivel 
+    }
+    
+    const itensCarrinho_recibo = document.getElementById("cart-list");
+    Carrinho_recibo.innerHTML = "";//limpa a lista de itens e recibo atual
+    
+    const itensCarrinho = obterCarrinhoDoNavegador();//le os kookies do navegador 
+    //para cada itens do carrinho 
+    itensCarrinho.forEach(itemCarrinho => {
+        //adiciona o item do carrinho ao recebido
+        const li = document.createElement("li");
+        
+        carrinho_recibo.appendChild(li);
+    });
+});

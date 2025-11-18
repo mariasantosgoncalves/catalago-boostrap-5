@@ -43,110 +43,140 @@
                         <a class="nav-link disabled" aria-disabled="true" href="#">desabiltado</a>
                     </li>
                 </ul>
-                <form class="d-flex form-inline my-2 my-lg-0 ms-auto">
-                    <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar item" aria-label="Buscar item">
-                    <button id="search-button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
-                
+                <div>
+                    <!--carrinho e buscar -->
+                    <div class="d-flex aling-items-center">
+                        <!--botao do carrinho com contador (bedge)-->
+                        <!--o botao tem poisition-relative,o bodge tem position-absolute top-0 start-100 translate-middle-->
+                        <button class="btn btn-outline-light me-4 poisition-relative" id="cart-button" title="ver carrinho">
+                            <i class="bi bi-cart4 fs-5"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle-- badge rounded-pill bg-danger d-none" id="cert-count">
+                                0
+                                <span class="visually-hidden">itens no carrinho</span>
+                            </span>
+                        </button>
+                        <!--formulario de busca-->
+                        <form class="d-flex" role="search">
+                            <input id="search-input" class="form-control me-2" type="search" placeholder="buscar item" aria-label="buscar">
+                            <button id="search-button" class="btn btn-outline-light my-2 my-sm-0" type="submit">buscar</button>
+                        </form>
+                    </span>
+                </button>
             </div>
+            <form class="d-flex form-inline my-2 my-lg-0 ms-auto">
+                <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar item" aria-label="Buscar item">
+                <button id="search-button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
         </div>
-    </nav>
-    
-    <div class="container mt-5">
-        <h1 class="mb-4 text-center">destaque do mes </h1>
-        <div class="row" id="catalogo-container">
-            
-            <!-- item 1: livros-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 item-catalogo" data-categoria="livros">
-                <div class="card h-100 shadow-sm rouded-3">
-                    <img src="https://placehold.co/400x300/1e40af/ffffff?text=LIVRO" class="card-img-top roudend-t-3" alt="titulo do livro">
-                    <div class="card-body d-flex-colunm">
-                        <h5 class="card-title text-primary">titulo do item</h5>
-                        <p class="card-text text-muted">categoria: livros</p>
-                        <p class="card-text flex-grow-1">descrinçao curta do produto ou item do catalogo.</p>
-                    </div>
-                    <div class="card-footer bg-light border-top-0 d-grid">
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal" data-item-id="1">
-                            <i class="bi bi-search"></i> ver detalhe
-                        </button>
-                    </div>
-                </div> 
-            </div> <!-- item 1-->
-            
-            <!-- item 2: artesanato-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 item-catalogo" data-categoria="livros">
-                <div class="card h-100 shadow-sm rouded-3">
-                    <img src="https://placehold.co/400x300/e879f9/ffffff?text=ARTE" class="card-img-top roudend-t-3" alt="titulo do livro">
-                    <div class="card-body d-flex-colunm">
-                        <h5 class="card-title text-primary">titulo do item 2</h5>
-                        <p class="card-text text-muted">categoria: Artesanato</p>
-                        <p class="card-text flex-grow-1">um item feito a mao com detalhes especiais e muito carrinho.</p>
-                    </div>
-                    <div class="card-footer bg-light border-top-0 d-grid">
-                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal" data-item-id="2">
-                            <i class="bi bi-search"></i> ver detalhe
-                        </button>
-                    </div>
-                </div> 
-            </div> <!-- item 2-->
-            
-            <!-- item 3: livros-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 item-catalogo" data-categoria="livros">
-                <div class="card h-100 shadow-sm rouded-3">
-                    <img src="https://placehold.co/400x300/fb923c/ffffff?text=FICÇAO" class="card-img-top roudend-t-3" alt="titulo do livro">
-                    <div class="card-body d-flex-colunm">
-                        <h5 class="card-title text-primary">item do livro 3 </h5>
-                        <p class="card-text text-muted">categoria: livros</p>
-                        <p class="card-text flex-grow-1">terceiro item do destaque.</p>
-                    </div>
-                    <div class="card-footer bg-light border-top-0 d-grid">
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal" data-item-id="3">
-                            <i class="bi bi-search"></i> ver detalhe
-                        </button>
-                    </div>
-                </div> 
-            </div> <!-- item 3-->
-            
-            <!-- item 1: livros-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 item-catalogo" data-categoria="livros">
-                <div class="card h-100 shadow-sm rouded-3">
-                    <img src="https://placehold.co/400x300/1e40af/ffffff?text=LIVRO" class="card-img-top roudend-t-3" alt="titulo do livro">
-                    <div class="card-body d-flex-colunm">
-                        <h5 class="card-title text-primary"> item de arte 4</h5>
-                        <p class="card-text text-muted">categoria: artesanato</p>
-                        <p class="card-text flex-grow-1">quarto item de destaque.</p>
-                    </div>
-                    <div class="card-footer bg-light border-top-0 d-grid">
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal" data-item-id="4">
-                            <i class="bi bi-search"></i> ver detalhe
-                        </button>
-                    </div>
-                </div> 
-            </div> <!-- item 1-->
-            
-        </div> <!-- .row -->
-    </div> <!-- .container-->
-    
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <p>&copy; 2025 catalogo do ensino medio.desenvolvimento com bootstrap 5.</p>
-    </footer>
-    
-    <div class="modal fade" id="detalheModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title">detalhes do item</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+</div>
+</nav>
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">destaque do mes </h1>
+    <div class="row" id="catalogo-container">
+        
+        <!-- item 1: livros-->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4 item-catalogo" data-categoria="livros">
+            <div class="card h-100 shadow-sm rouded-3">
+                <img src="https://placehold.co/400x300/1e40af/ffffff?text=LIVRO" class="card-img-top roudend-t-3" alt="titulo do livro">
+                <div class="card-body d-flex-colunm">
+                    <h5 class="card-title text-primary">titulo do item</h5>
+                    <p class="card-text text-muted">categoria: livros</p>
+                    <p class="card-text flex-grow-1">descrinçao curta do produto ou item do catalogo.</p>
                 </div>
-                <div class="modal-body">
-                    <p>Modal body text goes here.</p>
+                <div class="card-footer bg-light border-top-0 d-grid">
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal" data-item-id="1">
+                        <i class="bi bi-search"></i> ver detalhe
+                    </button>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
-                    <button type="button" class="btn btn-success"><i class="bi bi-cart-plus"></i> adicionar a lista</button>
+            </div> 
+        </div> <!-- item 1-->
+        
+        <!-- item 2: artesanato-->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4 item-catalogo" data-categoria="livros">
+            <div class="card h-100 shadow-sm rouded-3">
+                <img src="https://placehold.co/400x300/e879f9/ffffff?text=ARTE" class="card-img-top roudend-t-3" alt="titulo do livro">
+                <div class="card-body d-flex-colunm">
+                    <h5 class="card-title text-primary">titulo do item 2</h5>
+                    <p class="card-text text-muted">categoria: Artesanato</p>
+                    <p class="card-text flex-grow-1">um item feito a mao com detalhes especiais e muito carrinho.</p>
                 </div>
+                <div class="card-footer bg-light border-top-0 d-grid">
+                    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal" data-item-id="2">
+                        <i class="bi bi-search"></i> ver detalhe
+                    </button>
+                </div>
+            </div> 
+        </div> <!-- item 2-->
+        
+        <!-- item 3: livros-->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4 item-catalogo" data-categoria="livros">
+            <div class="card h-100 shadow-sm rouded-3">
+                <img src="https://placehold.co/400x300/fb923c/ffffff?text=FICÇAO" class="card-img-top roudend-t-3" alt="titulo do livro">
+                <div class="card-body d-flex-colunm">
+                    <h5 class="card-title text-primary">item do livro 3 </h5>
+                    <p class="card-text text-muted">categoria: livros</p>
+                    <p class="card-text flex-grow-1">terceiro item do destaque.</p>
+                </div>
+                <div class="card-footer bg-light border-top-0 d-grid">
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal" data-item-id="3">
+                        <i class="bi bi-search"></i> ver detalhe
+                    </button>
+                </div>
+            </div> 
+        </div> <!-- item 3-->
+        
+        <!-- item 1: livros-->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4 item-catalogo" data-categoria="livros">
+            <div class="card h-100 shadow-sm rouded-3">
+                <img src="https://placehold.co/400x300/1e40af/ffffff?text=LIVRO" class="card-img-top roudend-t-3" alt="titulo do livro">
+                <div class="card-body d-flex-colunm">
+                    <h5 class="card-title text-primary"> item de arte 4</h5>
+                    <p class="card-text text-muted">categoria: artesanato</p>
+                    <p class="card-text flex-grow-1">quarto item de destaque.</p>
+                </div>
+                <div class="card-footer bg-light border-top-0 d-grid">
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal" data-item-id="4">
+                        <i class="bi bi-search"></i> ver detalhe
+                    </button>
+                </div>
+            </div> 
+        </div> <!-- item 1-->
+        
+    </div> <!-- .row -->
+    
+    <div class="row" id="cart-section">
+        <h1 class="bm-txt-center"><i class="bi bi-cart4"></i> meu carrinho de compras</h1>
+        <ul class="list-group mb-4 shandow-sm" id="cart-list">
+        </ul>
+        <div class="d-flex justify-content-between aling-items-center p-3 bg-light roundend-t-3 shandow-sm">
+            <h5 class="mb-0">total de compras</h5>
+            <h3 class="bm-0 text-primary fw-bold" id="cart-total"></h3>
+        </div>
+    </div>
+</div> <!-- .container-->
+
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <p>&copy; 2025 catalogo do ensino medio.desenvolvimento com bootstrap 5.</p>
+</footer>
+
+<div class="modal fade" id="detalheModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">detalhes do item</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
+                <button type="button" class="btn btn-success"><i class="bi bi-cart-plus"></i> adicionar a lista</button>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
