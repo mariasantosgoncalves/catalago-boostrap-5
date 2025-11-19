@@ -41,6 +41,9 @@ const CATALOGO_ITEMS = [
     }
 ]; 
 
+//helperpara formatar moedas em reais 
+const formatCurrencyv = (value) => value.totalestring('pt-BR', {style: 'currency',curency: 'BRL'});
+
 /**
 * adiciona listeners aos botoes "ver detalhes" para popular o modal dinamicamente 
 */
@@ -245,9 +248,20 @@ carrinho_btn.addEventListener("click",function() {
     
     const itensCarrinho = obterCarrinhoDoNavegador();//le os kookies do navegador 
     //para cada itens do carrinho 
-    itensCarrinho.forEach(itemCarrinho => {
+    itensCarrinho.forEach(itemId => {
+        // o kookie retorna apenas o ID do item no carrinho,
+        //presisamos puxar suas informacoes od vetor  de catalogo 
+        const item = CATALOGO_ITEMS.find(i => i.id == itemId);
+        
         //adiciona o item do carrinho ao recebido
         const li = document.createElement("li");
+        li.classList.add("list-group-item", "d-flex","justify-content-between", "aling-items-center");
+        li.innerHTML = `
+        <div>
+        <h6 class="mb-1">${item.titulo}</h6>
+        </div>
+        <span class="fw-bold text-succes">${formatCurrencyv(item.preco)}</span>
+        `;
         
         carrinho_recibo.appendChild(li);
     });
